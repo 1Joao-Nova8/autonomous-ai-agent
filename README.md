@@ -97,8 +97,8 @@ python daemon.py
 ## 📝 État du projet
 
 - ✅ Dépôt créé
-- ⏳ Architecture en cours
-- ⏳ Premiers modules (observer, detector)
+- ✅ Architecture initialisée
+- ⏳ Modules core en développement
 - ⏳ Tests et intégration
 
 ---

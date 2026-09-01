@@ -1,0 +1,41 @@
+# Autonomous AI Agent - Activation Configuration
+
+# Quand l'agent doit-il se réveiller et générer des propositions?
+
+activation_modes:
+  # Mode intervalle régulier
+  interval:
+    enabled: true
+    schedule: "daily"          # daily, weekly, custom_cron
+    time: "09:00"              # Heure d'activation en UTC
+    timezone: "Europe/Paris"
+  
+  # Mode événementiel
+  event_based:
+    enabled: true
+    triggers:
+      - on_new_commit: true
+      - on_issue_created: true
+      - on_pr_opened: true
+      - on_deadline_approaching: true
+      - on_test_failure: true
+  
+  # Mode manuel
+  manual:
+    enabled: true
+    command: "python run.py"
+
+# Configuration de sortie
+output:
+  format: "markdown"           # markdown, json, slack
+  channels:
+    - type: "file"
+      path: "./outputs/proposals.md"
+    - type: "github_issue"
+      enabled: false
+    - type: "slack"
+      enabled: false
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+
+# Niveaux de verbosité
+verbosity: "info"              # debug, info, warning

@@ -1,0 +1,55 @@
+# Autonomous AI Agent - Behavior Rules
+
+# Règles de génération des propositions
+
+generation:
+  min_proposals: 3
+  max_proposals: 5
+  max_chars_per_proposal: 400
+  
+  # Catégories de propositions à surveiller
+  categories:
+    - blocking_issues          # Blocages critiques
+    - technical_debt           # Dette technique
+    - testing_coverage         # Couverture de tests
+    - documentation            # Documentation manquante
+    - opportunities            # Opportunités d'amélioration
+    - risk_alerts              # Risques détectés
+
+# Priorités
+priorities:
+  critical:                    # 🔴 Critique
+    color: "red"
+    max_age_days: 1            # Doit être proposé chaque jour
+  
+  week:                        # 🟡 À traiter cette semaine
+    color: "yellow"
+    max_age_days: 7
+  
+  opportunistic:               # 🟢 Opportuniste
+    color: "green"
+    max_age_days: 30
+
+# Règles de comportement
+behavior:
+  avoid_repetition: true       # Ne pas répéter les propositions antérieures
+  repetition_threshold_days: 7 # Mais ok après 7 jours
+  
+  require_concrete_action: true
+  enforce_brevity: true
+  
+  # Portée du projet
+  scope:
+    in_scope:
+      - autonomous-ai-agent
+      - integrations with primary systems
+    out_of_scope:
+      - marketing campaigns
+      - unrelated projects
+
+# Seuils de détection
+detection_thresholds:
+  uncommitted_changes_hours: 24
+  untested_commits: 3
+  missing_docstring_ratio: 0.2
+  stale_issue_days: 14
